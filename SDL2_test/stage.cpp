@@ -8,4 +8,6 @@ using namespace std;
  * as I have an idea...and figure out why the include does not work.
  */
 
-void loadstage();
+void loadStage() {
+
+}
