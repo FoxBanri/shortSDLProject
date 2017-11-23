@@ -1,4 +1,6 @@
 #include <iostream>
+#include <cstdlib>
+#include <list>
 
 using namespace std;
 
@@ -8,6 +10,7 @@ using namespace std;
  * as I have an idea...and figure out why the include does not work.
  */
 
-void loadStage() {
-
+std::list<std::string> loadEssentials(std::string &file) {
+    std::list<std::string> essentials;
+    return essentials;
 }

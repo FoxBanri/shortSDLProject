@@ -63,6 +63,17 @@ void errorLoggerSDL(std::ostream &os, const std::string &msg) {
 
 
 
+void useViewport(int x, int y, int w, int h, SDL_Renderer *ren) {
+    
+    SDL_Rect view;
+    view.x = x;
+    view.y = y;
+    view.h = h;
+    view.w = w;
+    SDL_RenderSetViewport(ren, &view);
+    
+}
+
 /*SDL_Texture* loadBMP(filename, renderer)
  *simple function to load BMPs into a SDL_Texture. It will return the loaded 
  * texture.
@@ -115,7 +126,7 @@ void renderTexture(SDL_Texture *tex, SDL_Renderer *ren, int x, int y) {
     SDL_Rect dst;
     dst.x = x;
     dst.y = y;
- 
+    
     SDL_QueryTexture(tex, NULL, NULL, &dst.w, &dst.h);
     SDL_RenderCopy(ren, tex, NULL, &dst);
     
@@ -168,9 +179,10 @@ SDL_Renderer* setUpRenderer(SDL_Window* win) {
         cleanup(win, NULL, del);
         return NULL;
     }
-    SDL_SetRenderDrawColor(ren, 0, 255, 0, 255);
+    SDL_SetRenderDrawColor(ren, 70, 100, 70, 255);
     SDL_RenderClear(ren);
     SDL_RenderPresent(ren);
+      
     return ren;
 }
 
@@ -179,8 +191,12 @@ SDL_Renderer* setUpRenderer(SDL_Window* win) {
  *Just a usual main-function with way to much code in it. I maybe have to
  * cut it into one or two new functions, cause it looks messy.
  */
+
+
 int main(int argc, char** argv) {
     
+    bool quit = false; 
+    SDL_Event e;
     std::list<SDL_Texture*>deletelist;
     SDL_Window *window;
     SDL_Renderer *renderer;
@@ -199,7 +215,19 @@ int main(int argc, char** argv) {
     renderTexture(text, renderer, 300, 300);
     SDL_RenderPresent(renderer);
     SDL_Delay(5000);
-    
+    /*
+    while(!quit) {
+        
+        while(SDL_PollEvent(&e) != 0){
+            
+            if(e.type == SDL_QUIT) {
+                quit = true;
+            }
+        }
+        SDL_RenderPresent(renderer);
+        
+    }
+    */
     cleanup(window, renderer, deletelist);
     errorFile("Keine Fehler");
     return 0;

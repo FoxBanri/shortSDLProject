@@ -9,7 +9,7 @@
 #ifndef STAGE_H
 #define STAGE_H
     
-void loadStage(void);
+std::list<std::string> loadStage(std::string &file);
 
 
 #endif /* STAGE_H */
