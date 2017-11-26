@@ -13,6 +13,10 @@
 
 #ifndef ENGINE_H
 #define ENGINE_H
+#include <SDL2/SDL.h>
+#include <iostream>
+#include <list>
+#include <cstdlib>
 
 void errorFile(const std::string &msg);
 

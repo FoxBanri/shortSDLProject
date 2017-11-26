@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/LTexture.o \
 	${OBJECTDIR}/engine.o \
 	${OBJECTDIR}/stage.o
 
@@ -62,6 +63,11 @@ LDLIBSOPTIONS=-lSDL2 -lSDL2_image
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sdl2_test: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/sdl2_test ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/LTexture.o: LTexture.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/LTexture.o LTexture.cpp
 
 ${OBJECTDIR}/engine.o: engine.cpp 
 	${MKDIR} -p ${OBJECTDIR}
