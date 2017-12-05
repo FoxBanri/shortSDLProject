@@ -19,29 +19,50 @@
 #include <SDL2/SDL_image.h>
 
 using namespace std;
-
-LTexture::LTexture() {
+/*
+ *Constructor 1
+ */
+LTexture::LTexture(SDL_Renderer* ren) {
     SDL_Texture *mTexture = NULL;
     int mWidth = 0;
     int mHeight = 0;
+    SDL_Renderer *mRen = ren;
 }
+
+/*
+ *Constructor 2
+ */
 
 LTexture::LTexture(const LTexture& orig) {
 }
 
+/*
+ *Destructor
+ */
+
 LTexture::~LTexture() {
     free();
 }
+
+/*LTexture::free()
+ * Function to destroy the real SDL_Texture, so the memory is clean.
+ */
 void LTexture::free() {
  SDL_DestroyTexture(mTexture);   
 }
 
-bool LTexture::loadFromFile(std::string &path, SDL_Renderer* ren) {
+/*LTexture::loadFromFile(std::string &path)
+ * Destroys mTexture, if LTexture already has a mTexture, to load new one.
+ * Uses errorLoggerSDL, if there goes something wrong while loading the texture.
+ * Retruns true if the loading was successful and false if it failed.
+ */
+
+bool LTexture::loadFromFile(std::string &path) {
     free();
     bool success = false;
     
     
-    mTexture = IMG_LoadTexture(ren, path.c_str());
+    mTexture = IMG_LoadTexture(mRen, path.c_str());
     if(mTexture == NULL) {
         errorLoggerSDL(std::cout, "LoadPNGTexture");
         success = false;

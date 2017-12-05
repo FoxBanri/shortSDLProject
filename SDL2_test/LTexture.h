@@ -20,10 +20,10 @@
 class LTexture {
     
 public:
-    LTexture();
+    LTexture(SDL_Renderer *mRen);
     LTexture(const LTexture& orig);
     virtual ~LTexture();
-    bool loadFromFile(std::string &path, SDL_Renderer* ren);
+    bool loadFromFile(std::string &path);
     void free();
     void render(int x, int y);
     int getWidth();
@@ -33,6 +33,7 @@ private:
     SDL_Texture *mTexture;
     int mWidth;
     int mHeight;
+    SDL_Renderer *mRen;
 
 };
 
