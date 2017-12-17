@@ -25,7 +25,7 @@ public:
     virtual ~LTexture();
     bool loadFromFile(std::string &path);
     void free();
-    void render(int x, int y);
+    void render(int x, int y, SDL_Rect* clip = NULL);
     int getWidth();
     int getHeight();
     

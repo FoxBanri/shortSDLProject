@@ -54,7 +54,8 @@ void LTexture::free() {
 /*LTexture::loadFromFile(std::string &path)
  * Destroys mTexture, if LTexture already has a mTexture, to load new one.
  * Uses errorLoggerSDL, if there goes something wrong while loading the texture.
- * Retruns true if the loading was successful and false if it failed.
+ * Retruns true if the loading was successful and false if it failed. It also fills
+ * in the correct values for mHeight and mWidth.
  */
 
 bool LTexture::loadFromFile(std::string &path) {
@@ -69,6 +70,28 @@ bool LTexture::loadFromFile(std::string &path) {
     } else {
         success = true;
     }
+    SDL_QueryTexture(mTexture, NULL, NULL, &mWidth, &mHeight);
     return success;
     
 }
+
+/*LTexture::getHeight()
+ *Simple getter to return mHeight.
+ */
+
+int LTexture::getHeight() {
+    return mHeight;
+}
+
+/*LTexture::getWidth()
+ *Simple Getter to return mWidth.
+ */
+
+int LTexture::getWidth() {
+    return mWidth;
+}
+
+void LTexture::render(int x, int y, SDL_Rect* clip) {
+    
+}
+
